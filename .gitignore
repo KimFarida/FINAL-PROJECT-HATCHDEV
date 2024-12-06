@@ -2,6 +2,8 @@ migration
 migrations
 
 *.env
+*.env.development.production
+
 # Logs
 logs
 *.log
