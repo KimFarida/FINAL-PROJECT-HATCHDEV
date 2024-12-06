@@ -4,10 +4,13 @@ import axios, {
   InternalAxiosRequestConfig 
 } from 'axios';
 
+
 interface QueueItem {
   resolve: (value?: unknown) => void;
   reject: (error?: unknown) => void;
 }
+
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 class ApiClient {
   private static instance: ApiClient;
@@ -15,9 +18,10 @@ class ApiClient {
   private isRefreshing: boolean = false;
   private failedQueue: QueueItem[] = [];
 
+  
   private constructor() {
     this.api = axios.create({
-      baseURL: 'http://localhost:3000/api/v1',
+      baseURL: apiBaseUrl|| 'http://localhost:3000/api/v1',
       headers: {
         'Content-Type': 'application/json',
       },
