@@ -2,7 +2,8 @@ import {
     Entity, 
     PrimaryGeneratedColumn, 
     Column, 
-    ManyToOne 
+    ManyToOne,
+    JoinColumn 
   } from "typeorm";
   import { Movie } from "./Movie";
   import { User } from "./User";
@@ -11,13 +12,21 @@ import {
   export class WatchlistItem {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
-  
+
+    @Column()  
+    movieId!: number;
+
+    @Column()  
+    userId!: string;
+
     @ManyToOne(() => Movie, { eager: true })
+    @JoinColumn({ name: 'movieId' }) 
     movie!: Movie; 
-  
+
     @ManyToOne(() => User, { eager: true })
+    @JoinColumn({ name: 'userId' })  
     user!: User;
-  
+    
     @Column('timestamp', { default: () => 'CURRENT_TIMESTAMP' })
     addedAt!: Date;
   
