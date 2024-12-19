@@ -4,7 +4,7 @@ import JwtService from '../services/jwtService';
 
 interface RequestWithUser extends Request {
     user?: {
-        userId: string;
+        id: string;
         email: string;
         username: string;
     };

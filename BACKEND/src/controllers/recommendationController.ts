@@ -7,7 +7,7 @@ class RecommendationController {
 
   static async getRecommendations(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const userId = (req as any).user?.userId;
+      const userId = (req as any).user?.id;
       const { mood } = req.query;
 
       if (!userId) {

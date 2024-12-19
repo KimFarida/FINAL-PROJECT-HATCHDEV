@@ -82,7 +82,7 @@ export const refreshUserToken = async (refreshToken: string) => {
 
         const payload = JwtService.verifyRefreshToken(refreshToken)
 
-        const user = await userRepository.findOne( { where: { id: payload.userId } })
+        const user = await userRepository.findOne( { where: { id: payload.id } })
 
         if(!user){
             throw new CustomError('User not found', 404)

@@ -3,8 +3,14 @@ import JwtService from '../services/jwtService';
 import { CustomError } from '../utils/customError';
 
 
+export interface AuthenticatedUser {
+  id: string;
+  email: string;
+  username: string;
+}
+
 export interface AuthenticatedRequest extends Request {
-  user?: string | object; 
+  user?: AuthenticatedUser;  
 }
 
 const authenticateJWT = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {

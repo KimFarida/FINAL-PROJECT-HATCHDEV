@@ -5,7 +5,7 @@ interface AdvancedMoodFilter {
     sort_by: string;
     include_adult: boolean;
     with_runtime?: { gte?: number; lte?: number };
-    without_genres?: string; // Genres to explicitly exclude
+    without_genres?: string; 
     release_date?: { gte?: string; lte?: string };
     with_original_language?: string;
     with_keywords?: string;

@@ -12,7 +12,7 @@ class ProfileController {
     
     static async getProfile(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const userId = (req as any).user?.userId;
+            const userId = (req as any).user?.id;
     
             if (!userId) {
                 return next(new CustomError('User ID is missing in the token', 400));
@@ -28,7 +28,7 @@ class ProfileController {
 
     static async getStreakStats(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const userId = (req as any).user?.userId;
+            const userId = (req as any).user?.id;
 
             if (!userId) {
                 return next(new CustomError('User ID is missing in the token', 400));
@@ -44,7 +44,7 @@ class ProfileController {
 
     static async recordWatch(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const userId = (req as any).user?.userId;
+            const userId = (req as any).user?.id;
 
             if (!userId) {
                 return next(new CustomError('User ID is missing in the token', 400));
@@ -64,7 +64,7 @@ class ProfileController {
 
     static async addToRecentlyWatched(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const userId = (req as any).user?.userId;
+            const userId = (req as any).user?.id;
             const { movieId } = req.body;
 
             if (!userId) {
@@ -87,7 +87,7 @@ class ProfileController {
 
     static async getRecentlyWatched(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const userId = (req as any).user?.userId;
+            const userId = (req as any).user?.id;
     
             if (!userId) {
                 return next(new CustomError('User ID is missing in the token', 400));
@@ -101,10 +101,9 @@ class ProfileController {
         }
     }
 
-    // New unified preference methods
     static async getAllPreferences(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const userId = (req as any).user?.userId;
+            const userId = (req as any).user?.id;
 
             if (!userId) {
                 return next(new CustomError('User ID is missing in the token', 400));
@@ -120,7 +119,7 @@ class ProfileController {
 
     static async updatePreferences(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const userId = (req as any).user?.userId;
+            const userId = (req as any).user?.id;
             const updates = req.body;
 
             if (!userId) {

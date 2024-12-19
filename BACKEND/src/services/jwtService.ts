@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 interface TokenPayload {
-  userId: string;
+  id: string;
   email: string;
   username: string;
 }
@@ -27,10 +27,10 @@ class JwtService {
     }
   }
 
-  static createTokens(userId: string, email: string, username: string): TokenResponse {
+  static createTokens(id: string, email: string, username: string): TokenResponse {
     this.validateEnvironment();
 
-    const payload: TokenPayload = { userId, email, username };
+    const payload: TokenPayload = { id, email, username };
 
     const accessToken = jwt.sign(payload, this.ACCESS_SECRET, {
       expiresIn: this.ACCESS_EXPIRES_IN,

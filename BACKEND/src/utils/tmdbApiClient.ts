@@ -97,7 +97,7 @@ interface DiscoverMoviesParams {
     return discoverMovies({
       page,
       sort_by: 'popularity.desc',
-      vote_count_gte: 100, // Ensure movies have significant engagement
+      vote_count_gte: 100, 
     });
   };
   
@@ -138,7 +138,6 @@ export const getMovieByID = async (id: number): Promise<Movie | null> => {
       headers: getHeaders(),
     });
 
-    // Additional validation
     if (!response.data) {
       return null;
     }
@@ -147,7 +146,6 @@ export const getMovieByID = async (id: number): Promise<Movie | null> => {
   } catch (error) {
     // Check if it's an Axios error
     if (isAxiosError<TMDBErrorResponse>(error)) {
-      // Specifically handle 404 for movie not found
       if (error.response?.status === 404) {
         return null;
       }
@@ -182,7 +180,6 @@ export const getSimilarMovies = async (
       params,
     });
 
-    // Additional validation
     if (!response.data || !response.data.results) {
       return null;
     }
@@ -198,7 +195,6 @@ export const getSimilarMovies = async (
       return handleAxiosError(error);
     }
 
-    // Rethrow if it's already a CustomError
     if (error instanceof CustomError) {
       throw error;
     }
@@ -220,19 +216,16 @@ export const getMovieGenres = async (): Promise<Genre[] | null> => {
       params,
     });
 
-    // Additional validation
     if (!response.data || !response.data.genres) {
       throw new CustomError('Invalid genres response', 500, 'TMDB_INVALID_GENRES');
     }
 
     return response.data.genres;
   } catch (error) {
-    // Check if it's an Axios error
     if (isAxiosError<TMDBErrorResponse>(error)) {
       return handleAxiosError(error);
     }
 
-    // Rethrow if it's already a CustomError
     if (error instanceof CustomError) {
       throw error;
     }
@@ -262,19 +255,15 @@ export const searchMovie = async (
       params,
     });
 
-    // Additional validation
     if (!response.data || !response.data.results) {
       throw new CustomError('Invalid search response', 500, 'TMDB_INVALID_SEARCH');
     }
 
     return response.data;
   } catch (error) {
-    // Check if it's an Axios error
     if (isAxiosError<TMDBErrorResponse>(error)) {
       return handleAxiosError(error);
     }
-
-    // Rethrow if it's already a CustomError
     if (error instanceof CustomError) {
       throw error;
     }
